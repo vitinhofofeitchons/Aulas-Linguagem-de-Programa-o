@@ -5,25 +5,47 @@
 </head>
 
 <style>
+    body {
+        background-color: rgb(173, 216, 230);
+    }
 
-body{background-color: rgb(173, 216, 230);
-}
+    .titulo {
+        font-size: 20px;
+        color: rgb(22, 103, 141);
+        margin-top: 70px;
+        text-align: center;
+    }
 
-.titulo{
-    font-size: 20px;
-    color: rgb(22, 103, 141);
-    margin-top: 70px;
-    text-align: center;
-}
-.formulario{
-    background-color: azure;
-    width: 600px;
-    padding: 20px;
-    border-radius: 8px;
-    border: 2px solid black;
-    margin: auto;
-}
+    .formulario {
+        background-color: azure;
+        width: 600px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid black;
+        margin: auto;
+    }
 
+    .cadastrar {
+        cursor: pointer;
+        margin: auto;
+        display: block;
+    }
+
+    .resultado {
+        background-color: azure;
+        width: 600px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid black;
+        margin: auto;
+        margin-top: 50px;
+        display: none;
+
+
+
+
+
+    }
 </style>
 
 <body>
@@ -34,7 +56,7 @@ body{background-color: rgb(173, 216, 230);
         <p>Preencha o formulário abaixo para cadastrar um novo aluno</p>
     </div>
 
-    <div class="formulario"> 
+    <div class="formulario">
 
         <form>
 
@@ -44,19 +66,65 @@ body{background-color: rgb(173, 216, 230);
             <label for="dataNasc">Data de Nascimento</label>
             <input type="date" id="dataNasc" name="dataNasc"><br><br>
 
+            <input type="radio" id="feminino" name="genero" value="feminino">
+            <label for="feminino">Feminino</label><br>
+
+            <input type="radio" id="masculino" name="genero" value="masculino">
+            <label for="masculino">Masculino</label><br>
+
+            <input type="radio" id="outro" name="genero" value="outro">
+            <label for="outro">outro</label><br><br>
+
             <label for="cpf">CPF: </label><br>
             <input type="text" id="cpf" name="cpf"><br><br>
 
             <label for="email">Email: </label><br>
             <input type="text" id="email" name="email"><br><br>
 
-            <button type="submit">Cadastrar</button>
+            <button type="button" class="cadastrar" onclick="mostrarDados()">Cadastrar</button>
 
 
 
         </form>
 
     </div>
+
+    <div>
+
+        <div id="resultado" class="resultado">
+
+
+
+        </div>
+
+        <script>
+
+            function mostrarDados() {
+
+                let nome = document.getElementById("nome").value;
+                let dataNasc = document.getElementById("dataNasc").value;
+                let cpf = document.getElementById("cpf").value;
+                let email = document.getElementById("email").value;
+                let generoSelecionado = document.querySelector('input[name="genero"]:checked');
+                let genero = generoSelecionado ? generoSelecionado.value : "Não informado";
+                let resultado = document.getElementById("resultado");
+
+                document.getElementById("resultado").innerHTML = "<h2>Dados Informados: <h2>" +
+                    "Nome: " + nome + "<br>" +
+                    "Data de Nascimento: " + dataNasc + "<br>" +
+                    "CPF: " + cpf + "<br>" +
+                    "Email: " + email + "<br>" +
+                    "Genero: " + genero;
+
+                resultado.style.display = "block";
+
+            }
+
+
+
+
+        </script>
+
 </body>
 
 </html>
