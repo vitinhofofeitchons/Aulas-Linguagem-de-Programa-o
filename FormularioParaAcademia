@@ -69,10 +69,9 @@
             border-radius: 5px;
             color: white;
             box-sizing: border-box;
-            /* Garante que o padding não quebre a largura */
         }
 
-        /* Organização em Colunas (Peso e Altura lado a lado) */
+        /* Organização em Colunas */
         .row {
             display: flex;
             gap: 20px;
@@ -109,6 +108,37 @@
             transform: scale(1.02);
         }
 
+        /* Estilo das Redes Sociais */
+        .redes-sociais {
+            margin-top: 25px;
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .redes-sociais p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .social-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #ccff00;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border: 1px solid #ccff00;
+            border-radius: 5px;
+        }
+
+        .social-link:hover {
+            background-color: #ccff00;
+            color: #000;
+        }
+
         /* Resultado */
         .resultado {
             display: none;
@@ -118,6 +148,14 @@
             margin-top: 30px;
             border-radius: 10px;
             font-weight: 500;
+        }
+
+        .imc-box {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid black;
         }
     </style>
 </head>
@@ -163,20 +201,23 @@
 
                 <label>Gênero:</label>
                 <div class="genero-group">
-                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero"
-                            value="Masculino"> Masc</label>
-                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero"
-                            value="Feminino"> Fem</label>
-                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero" value="Outro">
-                        Outro</label>
+                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero" value="Masculino"> Masc</label>
+                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero" value="Feminino"> Fem</label>
+                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero" value="Outro"> Outro</label>
                 </div>
 
                 <label for="email">E-mail de Contato:</label>
                 <input type="text" id="email" placeholder="contato@shape.com">
 
-                <button type="button" class="btn-cadastrar" onclick="registrarGymBro()">Gerar Ficha de Treino
-                    🏋️‍♂️</button>
+                <button type="button" class="btn-cadastrar" onclick="registrarGymBro()">Gerar Ficha de Treino 🏋️‍♂️</button>
             </form>
+
+            <!-- Links de Recomendação -->
+            <div class="redes-sociais">
+                <p>Siga nosso Personal Trainer:</p>
+                <a href="https://www.instagram.com/renato_cariani/?hl=pt-br" target="_blank" class="social-link">📸 Instagram</a>
+                <a href="https://www.youtube.com/renatocariani" target="_blank" class="social-link">🎥 YouTube</a>
+            </div>
         </div>
 
         <div id="resultado" class="resultado"></div>
@@ -186,27 +227,48 @@
         function registrarGymBro() {
             const nome = document.getElementById("nome").value;
             const biotipo = document.getElementById("biotipo").value;
-            const peso = document.getElementById("peso").value;
-            const altura = document.getElementById("altura").value;
+            const peso = parseFloat(document.getElementById("peso").value);
+            const alturaCm = parseFloat(document.getElementById("altura").value);
             const genero = document.querySelector('input[name="genero"]:checked')?.value || "Não informado";
 
             const resultado = document.getElementById("resultado");
 
-            // Template de exibição moderno
+            // Validação simples
+            if (!peso || !alturaCm) {
+                alert("Por favor, preencha peso e altura para calcular o IMC!");
+                return;
+            }
+
+            // Cálculo do IMC
+            const alturaM = alturaCm / 100;
+            const imc = (peso / (alturaM * alturaM)).toFixed(1);
+
+            // Classificação do IMC
+            let status = "";
+            if (imc < 18.5) status = "Abaixo do peso (Bulking necessário!)";
+            else if (imc < 25) status = "Peso normal (Shape em dia!)";
+            else if (imc < 30) status = "Sobrepeso (Foco no Cardio!)";
+            else status = "Obesidade (Bora fechar a boca e treinar!)";
+
+            // Exibição do Resultado com IMC
             resultado.innerHTML = `
                 <h2 style="margin-top:0">✅ Cadastro Realizado!</h2>
                 <strong>Atleta:</strong> ${nome} | <strong>Gênero:</strong> ${genero}<br>
                 <strong>Biotipo:</strong> ${biotipo}<br>
-                <strong>Peso Atual:</strong> ${peso}kg | <strong>Altura:</strong> ${altura}cm<br>
-                <p><em>Ficha enviada para o sistema. Bora treinar!</em></p>
+                <strong>Peso Atual:</strong> ${peso}kg | <strong>Altura:</strong> ${alturaCm}cm<br>
+                
+                <div class="imc-box">
+                    <h3 style="margin:0">📊 Seu IMC: ${imc}</h3>
+                    <p style="margin:5px 0 0 0; font-weight: bold; text-transform: uppercase;">⚡ Status: ${status}</p>
+                </div>
+
+                <p style="margin-top:15px"><em>Ficha enviada para o sistema. Bora buscar o shape!</em></p>
             `;
 
             resultado.style.display = "block";
-            // Rola a página suavemente para o resultado
             resultado.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
 </body>
-
 </html>
