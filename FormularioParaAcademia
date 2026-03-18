@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Academia do Vitinho - Cadastro</title>
+    <style>
+        /* Estilo Geral - Vibe Dark/Muscle */
+        body {
+            background-color: #121212;
+            /* Fundo escuro */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ccff00;
+            /* Amarelo Neon */
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .titulo h1 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .titulo p {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Formulário Estilizado */
+        .formulario {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            border-left: 5px solid #ccff00;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ccff00;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: white;
+            box-sizing: border-box;
+            /* Garante que o padding não quebre a largura */
+        }
+
+        /* Organização em Colunas (Peso e Altura lado a lado) */
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        /* Radios de Gênero */
+        .genero-group {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-cadastrar {
+            width: 100%;
+            background-color: #ccff00;
+            color: black;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        .btn-cadastrar:hover {
+            background-color: #aacc00;
+            transform: scale(1.02);
+        }
+
+        /* Resultado */
+        .resultado {
+            display: none;
+            background-color: #ccff00;
+            color: black;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="titulo">
+            <h1>💪 Academia VitinhoFofeitchons</h1>
+            <p>Rumo ao Shape Inexplicável!</p>
+        </div>
+
+        <div class="formulario">
+            <form id="gymForm">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" placeholder="Ex: Lucas Maromba">
+
+                <div class="row">
+                    <div class="col">
+                        <label for="dataNasc">Nascimento:</label>
+                        <input type="date" id="dataNasc">
+                    </div>
+                    <div class="col">
+                        <label for="biotipo">Biotipo:</label>
+                        <select id="biotipo">
+                            <option value="Ectomorfo">Ectomorfo (Dificuldade em ganhar peso)</option>
+                            <option value="Mesomorfo">Mesomorfo (Facilidade em ganhar músculos)</option>
+                            <option value="Endomorfo">Endomorfo (Facilidade em ganhar peso)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" id="peso" placeholder="80">
+                    </div>
+                    <div class="col">
+                        <label for="altura">Altura (cm):</label>
+                        <input type="number" id="altura" placeholder="180">
+                    </div>
+                </div>
+
+                <label>Gênero:</label>
+                <div class="genero-group">
+                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero"
+                            value="Masculino"> Masc</label>
+                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero"
+                            value="Feminino"> Fem</label>
+                    <label style="color: white; font-weight: normal;"><input type="radio" name="genero" value="Outro">
+                        Outro</label>
+                </div>
+
+                <label for="email">E-mail de Contato:</label>
+                <input type="text" id="email" placeholder="contato@shape.com">
+
+                <button type="button" class="btn-cadastrar" onclick="registrarGymBro()">Gerar Ficha de Treino
+                    🏋️‍♂️</button>
+            </form>
+        </div>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        function registrarGymBro() {
+            const nome = document.getElementById("nome").value;
+            const biotipo = document.getElementById("biotipo").value;
+            const peso = document.getElementById("peso").value;
+            const altura = document.getElementById("altura").value;
+            const genero = document.querySelector('input[name="genero"]:checked')?.value || "Não informado";
+
+            const resultado = document.getElementById("resultado");
+
+            // Template de exibição moderno
+            resultado.innerHTML = `
+                <h2 style="margin-top:0">✅ Cadastro Realizado!</h2>
+                <strong>Atleta:</strong> ${nome} | <strong>Gênero:</strong> ${genero}<br>
+                <strong>Biotipo:</strong> ${biotipo}<br>
+                <strong>Peso Atual:</strong> ${peso}kg | <strong>Altura:</strong> ${altura}cm<br>
+                <p><em>Ficha enviada para o sistema. Bora treinar!</em></p>
+            `;
+
+            resultado.style.display = "block";
+            // Rola a página suavemente para o resultado
+            resultado.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+
+</html>
