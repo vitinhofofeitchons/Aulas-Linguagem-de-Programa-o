@@ -46,9 +46,61 @@
 
 
     }
+
+    .menu {
+        background-color: rgb(22, 103, 141);
+        color: azure;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-esquerda,
+    .menu-centro,
+    .menu-direita {
+        flex: 1;
+    }
+
+    .menu-centro {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .menu-direita {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
 </style>
 
 <body>
+    <div class="menu">
+        <div class="menu-esquerda"></div>
+        <div class="menu-centro">
+            <span>Inicio</span>
+            <span>Alunos</span>
+            <span>Professores</span>
+            <span>Funcionarios</span>
+
+        </div>
+
+        <div class="menu-direita">
+            <span>Login</span>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+
 
     <div class="titulo">
         <h1>EEB Dom Jaime De Barros Câmara</h1>
