@@ -16,13 +16,17 @@
         text-align: center;
     }
 
-    .formulario {
+    .pagina {
         background-color: azure;
         width: 600px;
         padding: 20px;
         border-radius: 8px;
         border: 2px solid black;
         margin: auto;
+        display: none;
+    }
+    .pagina-ativa{
+        display: block;
     }
 
     .cadastrar {
@@ -100,15 +104,13 @@
     </div>
 
 
-
-
     <div class="titulo">
         <h1>EEB Dom Jaime De Barros Câmara</h1>
 
         <p>Preencha o formulário abaixo para cadastrar um novo aluno</p>
     </div>
-
-    <div class="formulario">
+    
+    <div id="alunos" class="pagina pagina-ativa">
 
         <form>
 
@@ -140,6 +142,73 @@
         </form>
 
     </div>
+
+       <div id="alunos" class="pagina pagina-ativa">
+
+        <form>
+
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+
+            <label for="dataNasc">Data de Nascimento</label>
+            <input type="date" id="dataNasc" name="dataNasc"><br><br>
+
+            <input type="radio" id="feminino" name="genero" value="feminino">
+            <label for="feminino">Feminino</label><br>
+
+            <input type="radio" id="masculino" name="genero" value="masculino">
+            <label for="masculino">Masculino</label><br>
+
+            <input type="radio" id="outro" name="genero" value="outro">
+            <label for="outro">outro</label><br><br>
+
+            <label for="cpf">CPF: </label><br>
+            <input type="text" id="cpf" name="cpf"><br><br>
+
+            <label for="email">Email: </label><br>
+            <input type="text" id="email" name="email"><br><br>
+
+            <button type="button" class="cadastrar" onclick="mostrarDados()">Cadastrar</button>
+
+
+
+        </form>
+
+    </div>
+
+       <div id="alunos" class="pagina pagina-ativa">
+
+        <form>
+
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+
+            <label for="dataNasc">Data de Nascimento</label>
+            <input type="date" id="dataNasc" name="dataNasc"><br><br>
+
+            <input type="radio" id="feminino" name="genero" value="feminino">
+            <label for="feminino">Feminino</label><br>
+
+            <input type="radio" id="masculino" name="genero" value="masculino">
+            <label for="masculino">Masculino</label><br>
+
+            <input type="radio" id="outro" name="genero" value="outro">
+            <label for="outro">outro</label><br><br>
+
+            <label for="cpf">CPF: </label><br>
+            <input type="text" id="cpf" name="cpf"><br><br>
+
+            <label for="email">Email: </label><br>
+            <input type="text" id="email" name="email"><br><br>
+
+            <button type="button" class="cadastrar" onclick="mostrarDados()">Cadastrar</button>
+
+
+
+        </form>
+
+    </div>
+
 
     <div>
 
