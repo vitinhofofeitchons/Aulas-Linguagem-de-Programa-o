@@ -25,7 +25,8 @@
         margin: auto;
         display: none;
     }
-    .pagina-ativa{
+
+    .pagina-ativa {
         display: block;
     }
 
@@ -76,6 +77,10 @@
         justify-content: flex-end;
         gap: 10px;
     }
+
+    .menu span {
+        cursor: pointer;
+    }
 </style>
 
 <body>
@@ -83,9 +88,9 @@
         <div class="menu-esquerda"></div>
         <div class="menu-centro">
             <span>Inicio</span>
-            <span>Alunos</span>
-            <span>Professores</span>
-            <span>Funcionarios</span>
+            <span onclick="navegar('alunos')">Alunos</span>
+            <span onclick="navegar('professores')">Professores</span>
+            <span onclick="navegar('funcionarios')">Funcionarios</span>
 
         </div>
 
@@ -104,46 +109,16 @@
     </div>
 
 
+
     <div class="titulo">
         <h1>EEB Dom Jaime De Barros Câmara</h1>
 
-        <p>Preencha o formulário abaixo para cadastrar um novo aluno</p>
+        <h2>Preencha o formulário abaixo para cadastrar um novo aluno</h2>
     </div>
-    
+
     <div id="alunos" class="pagina pagina-ativa">
 
-        <form>
-
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br><br>
-
-            <label for="dataNasc">Data de Nascimento</label>
-            <input type="date" id="dataNasc" name="dataNasc"><br><br>
-
-            <input type="radio" id="feminino" name="genero" value="feminino">
-            <label for="feminino">Feminino</label><br>
-
-            <input type="radio" id="masculino" name="genero" value="masculino">
-            <label for="masculino">Masculino</label><br>
-
-            <input type="radio" id="outro" name="genero" value="outro">
-            <label for="outro">outro</label><br><br>
-
-            <label for="cpf">CPF: </label><br>
-            <input type="text" id="cpf" name="cpf"><br><br>
-
-            <label for="email">Email: </label><br>
-            <input type="text" id="email" name="email"><br><br>
-
-            <button type="button" class="cadastrar" onclick="mostrarDados()">Cadastrar</button>
-
-
-
-        </form>
-
-    </div>
-
-       <div id="funcionarios">
+        
 
         <form>
 
@@ -176,8 +151,43 @@
 
     </div>
 
-       <div id= "professores">
+    <div id="funcionarios" class="pagina">
 
+        <h2>Preencha o formulário abaixo para cadastrar um novo funcionario</h2>
+        <form>
+
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+
+            <label for="dataNasc">Data de Nascimento</label>
+            <input type="date" id="dataNasc" name="dataNasc"><br><br>
+
+            <input type="radio" id="feminino" name="genero" value="feminino">
+            <label for="feminino">Feminino</label><br>
+
+            <input type="radio" id="masculino" name="genero" value="masculino">
+            <label for="masculino">Masculino</label><br>
+
+            <input type="radio" id="outro" name="genero" value="outro">
+            <label for="outro">outro</label><br><br>
+
+            <label for="cpf">CPF: </label><br>
+            <input type="text" id="cpf" name="cpf"><br><br>
+
+            <label for="email">Email: </label><br>
+            <input type="text" id="email" name="email"><br><br>
+
+            <button type="button" class="cadastrar" onclick="mostrarDados()">Cadastrar</button>
+
+
+
+        </form>
+
+    </div>
+
+    <div id="professores" class="pagina">
+
+        <h2>Preencha o formulário abaixo para cadastrar um novo professor</h2>
         <form>
 
             <label for="nome">Nome:</label><br>
@@ -220,7 +230,19 @@
 
         <script>
 
+            function navegar(pagina) {
+
+                let pagina = document.getElementsByClassName("pagina");
+
+                for (let i = 0; i < paginas.length; i++) {
+                    paginas[i].classList.remove("pagina-ativa");
+                }
+
+                document.getElementById(pagina).classList.add("pagina-ativa")
+            }
+
             function mostrarDados() {
+
 
                 let nome = document.getElementById("nome").value;
                 let dataNasc = document.getElementById("dataNasc").value;
