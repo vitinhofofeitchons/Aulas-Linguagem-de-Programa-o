@@ -139,6 +139,27 @@
             border-left: 8px solid var(--sucesso);
             background-color: #fafffa;
         }
+
+        .card {
+
+            background-color: #0e4a68;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            
+        }
+        #dashboard{
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+
+        }
+        
     </style>
 </head>
 
@@ -146,6 +167,7 @@
     <nav class="menu">
         <div class="logo">PORTAL DOM JAIME</div>
         <div class="menu-centro">
+            <span onclick="navegar('dashboard')">Dashboard</span>
             <span onclick="navegar('alunos')">Alunos</span>
             <span onclick="navegar('professores')">Professores</span>
             <span onclick="navegar('funcionarios')">Funcionários</span>
@@ -157,10 +179,14 @@
         <h1>EEB Dom Jaime De Barros Câmara</h1>
         <p>Sistema Unificado de Registro Escolar</p>
     </div>
-
+ <!-- Dashboard -->
+    <div id="dashboard" class="card pagina-ativa">
+        <h2>Dashboard</h2>
+       
+    </div>
 
     <!-- Alunos -->
-    <div id="alunos" class="card pagina-ativa">
+    <div id="alunos" class="card">
         <h2>Registro de Novo Aluno</h2>
         <form>
             <label>Nome Completo:</label>
@@ -274,6 +300,19 @@
                 formulario.reset();
             }, 2500);
         }
+        function dashboard(){
+
+            const qtdAlunos = localStorage.getItem('cont_alunos')||0;
+            const qtdProfs = localStorage.getItem('cont_professores')||0;
+            const qtdFuncs = localStorage.getItem('cont_funcionarios')||0;
+
+            const cards = document.querySelectAll("#dashboard .card p");
+
+            card[0].innerText = qtdAlunos;
+            card[1].innerText = qtdProfs;
+            card[2].innerText = qtdFuncs;
+        }
+
     </script>
 
 </body>
